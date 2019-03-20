@@ -11,7 +11,6 @@ class App extends Component {
       scorePlayer2: 0,
       winningScore: ""
     }
-    this.handleChange = this.handleChange.bind(this);
   }
 
 
@@ -48,7 +47,7 @@ class App extends Component {
           <p>
           <h1><span id="p1Display">{this.state.scorePlayer1}</span> to <span id="p2Display">{this.state.scorePlayer2}</span></h1>
           <p>Playing to: <span id="winningScore">{this.state.winningScore}</span></p>
-          <input type="number" value={this.state.winningScore} onChange={this.handleChange}></input>
+          <input type="number" value={this.state.winningScore} onChange={(e) => this.handleChange(e)}></input>
           <button onClick={() => this.selectPlayer1()}>Player One</button>
           <button onClick={() => this.selectPlayer2()}>Player Two</button>
           <button onClick={() => this.clickReset()}>Reset</button>
