@@ -10,16 +10,18 @@ class App extends Component {
       scorePlayer1: 0,
       scorePlayer2: 0,
       winningScore: 5,
-      gameOver: false
+      gameOver: false,
+      changeClassOne: "playerScore",
+      changeClassTwo: "playerScore"
     }
   }
 
   handleChange(event) {
-    this.setState({winningScore: event.target.value});
+    const manualScore = Number(event.target.value);
+    this.setState({winningScore: manualScore});
   }
 
   selectPlayer1() {
-    debugger
     if (!this.state.gameOver) {
       const nextScore = this.state.scorePlayer1 + 1;
       this.setState((state) => {
@@ -28,6 +30,9 @@ class App extends Component {
       if (nextScore === this.state.winningScore) {
           this.setState((state) => {
             return {gameOver: true}
+          });
+          this.setState((state) => {
+            return {changeClassOne: "winner"}
           });
       }
     }
@@ -43,6 +48,9 @@ class App extends Component {
           this.setState((state) => {
             return {gameOver: true}
           });
+          this.setState((state) => {
+            return {changeClassTwo: "winner"}
+          });
       }
     }
   }
@@ -52,7 +60,9 @@ class App extends Component {
       return {
         scorePlayer1: 0,
         scorePlayer2: 0,
-        gameOver: false
+        gameOver: false,
+        changeClassOne: "playerScore",
+        changeClassTwo: "playerScore"
       }
     });
   }
@@ -63,14 +73,14 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-          <h1><span id="p1Display">{this.state.scorePlayer1}</span> to <span id="p2Display">{this.state.scorePlayer2}</span></h1>
-          <p>Playing to: <span id="winningScore">{this.state.winningScore}</span></p>
+          <div>
+          <h1><span id="p1Display" className={this.state.changeClassOne}>{this.state.scorePlayer1}</span> to <span id="p2Display" className={this.state.changeClassTwo}>{this.state.scorePlayer2}</span></h1>
+          <div>Playing to: <span id="winningScore">{this.state.winningScore}</span></div>
           <input type="number" value={this.state.winningScore} onChange={(e) => this.handleChange(e)}></input>
           <button onClick={() => this.selectPlayer1()}>Player One</button>
           <button onClick={() => this.selectPlayer2()}>Player Two</button>
           <button onClick={() => this.clickReset()}>Reset</button>
-          </p>
+          </div>
         </header>
       </div>
     );

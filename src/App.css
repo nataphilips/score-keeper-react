@@ -31,3 +31,12 @@
     transform: rotate(360deg);
   }
 }
+
+.winner {
+  color: green;
+}
+
+.playerScore {
+  background-color: #282c34;
+  min-height: 100vh;
+}
