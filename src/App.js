@@ -9,35 +9,54 @@ class App extends Component {
     this.state = {
       scorePlayer1: 0,
       scorePlayer2: 0,
-      winningScore: ""
+      winningScore: 5,
+      gameOver: false
     }
   }
 
+  handleChange(event) {
+    this.setState({winningScore: event.target.value});
+  }
 
   selectPlayer1() {
-    this.setState((state) => {
-      return {scorePlayer1: state.scorePlayer1 + 1}
-    });
+    debugger
+    if (!this.state.gameOver) {
+      const nextScore = this.state.scorePlayer1 + 1;
+      this.setState((state) => {
+        return {scorePlayer1: nextScore}
+      });
+      if (nextScore === this.state.winningScore) {
+          this.setState((state) => {
+            return {gameOver: true}
+          });
+      }
+    }
   }
 
   selectPlayer2() {
-    this.setState((state) => {
-      return {scorePlayer2: state.scorePlayer2 + 1}
-    });
+    if (!this.state.gameOver) {
+      const nextScore = this.state.scorePlayer2 + 1;
+      this.setState((state) => {
+        return {scorePlayer2: nextScore}
+      });
+      if (nextScore === this.state.winningScore) {
+          this.setState((state) => {
+            return {gameOver: true}
+          });
+      }
+    }
   }
 
   clickReset() {
     this.setState((state) => {
       return {
         scorePlayer1: 0,
-        scorePlayer2: 0
+        scorePlayer2: 0,
+        gameOver: false
       }
     });
   }
 
-  handleChange(event) {
-    this.setState({winningScore: event.target.value});
-  }
 
   render() {
     return (
