@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import styled from 'styled-components';
-import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -66,9 +65,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <AppBody>
+        <AppHeader>
+          <Logo src={logo}/>
           <div>
             <h1>
               <Score displayWinningColor={this.state.scorePlayer1 === this.state.winningScore}>
@@ -105,12 +104,29 @@ class App extends Component {
               Reset
             </button>
           </div>
-        </header>
-      </div>
+        </AppHeader>
+      </AppBody>
     );
   }
 }
 const Score = styled.span`
   color: ${props => props.displayWinningColor ? 'green' : 'white'};
+`
+const AppBody = styled.div`
+  text-align: center;
+`
+const AppHeader = styled.header`
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+`
+const Logo = styled.img`
+  height: 40vmin;
+  pointer-events: none;
 `
 export default App;
