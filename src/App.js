@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import styled from 'styled-components';
 import './App.css';
 
 class App extends Component {
@@ -11,8 +12,6 @@ class App extends Component {
       scorePlayer2: 0,
       winningScore: 5,
       gameOver: false,
-      changeClassOne: "playerScore",
-      changeClassTwo: "playerScore"
     }
   }
 
@@ -61,12 +60,9 @@ class App extends Component {
         scorePlayer1: 0,
         scorePlayer2: 0,
         gameOver: false,
-        changeClassOne: "playerScore",
-        changeClassTwo: "playerScore"
       }
     });
   }
-
 
   render() {
     return (
@@ -74,17 +70,47 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <div>
-          <h1><span id="p1Display" className={this.state.changeClassOne}>{this.state.scorePlayer1}</span> to <span id="p2Display" className={this.state.changeClassTwo}>{this.state.scorePlayer2}</span></h1>
-          <div>Playing to: <span id="winningScore">{this.state.winningScore}</span></div>
-          <input type="number" value={this.state.winningScore} onChange={(e) => this.handleChange(e)}></input>
-          <button onClick={() => this.selectPlayer1()}>Player One</button>
-          <button onClick={() => this.selectPlayer2()}>Player Two</button>
-          <button onClick={() => this.clickReset()}>Reset</button>
+            <h1>
+              <Score displayWinningColor={this.state.scorePlayer1 === this.state.winningScore}>
+                {this.state.scorePlayer1}
+              </Score>
+              &nbsp; to &nbsp;
+              <Score displayWinningColor={this.state.scorePlayer2 === this.state.winningScore}>
+                {this.state.scorePlayer2}
+              </Score>
+            </h1>
+
+            <div>
+              Playing to:&nbsp;
+              <span>
+                {this.state.winningScore}
+              </span>
+            </div>
+
+            <input
+              type="number"
+              value={this.state.winningScore}
+              onChange={(e) => this.handleChange(e)}
+            />
+
+            <button onClick={() => this.selectPlayer1()}>
+              Player One
+            </button>
+
+            <button onClick={() => this.selectPlayer2()}>
+              Player Two
+            </button>
+
+            <button onClick={() => this.clickReset()}>
+              Reset
+            </button>
           </div>
         </header>
       </div>
     );
   }
 }
-
+const Score = styled.span`
+  color: ${props => props.displayWinningColor ? 'green' : 'white'};
+`
 export default App;
