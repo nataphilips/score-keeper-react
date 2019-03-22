@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './BallLogo.png';
 import styled from 'styled-components';
+import ScoreButton from './ScoreButton'
 
 class App extends Component {
   constructor(props) {
@@ -79,30 +80,27 @@ class App extends Component {
               </Score>
             </h1>
 
-            <div>
+            <ScoreShower>
               Playing to:&nbsp;
-              <span>
-                {this.state.winningScore}
-              </span>
-            </div>
+              <ScoreInput
+                type="number"
+                value={this.state.winningScore}
+                onChange={(e) => this.handleChange(e)}
+              />
+            </ScoreShower>
 
-            <input
-              type="number"
-              value={this.state.winningScore}
-              onChange={(e) => this.handleChange(e)}
-            />
 
-            <button onClick={() => this.selectPlayer1()}>
-              Player One
-            </button>
+            <ScoreButton onClick={() => this.selectPlayer1()}>
+              PLAYER ONE SCORES
+            </ScoreButton>
 
-            <button onClick={() => this.selectPlayer2()}>
-              Player Two
-            </button>
+            <ScoreButton onClick={() => this.selectPlayer2()}>
+              PLAYER TWO SCORES
+            </ScoreButton>
 
-            <button onClick={() => this.clickReset()}>
-              Reset
-            </button>
+            <ScoreButton onClick={() => this.clickReset()}>
+              RESET
+            </ScoreButton>
           </div>
         </AppHeader>
       </AppBody>
@@ -116,17 +114,38 @@ const AppBody = styled.div`
   text-align: center;
 `
 const AppHeader = styled.header`
-  background-color: #282c34;
+  background-color: #3c1a5b;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(20px + 2vmin);
   color: white;
 `
 const Logo = styled.img`
   height: 40vmin;
   pointer-events: none;
+`
+const ScoreInput = styled.input`
+  height: 20px;
+  width: 30px;
+  margin: 3px;
+  padding-left: 14px;
+  border: 22px solid #fff748;
+  font-size: 26px;
+  text-align: center;
+  border-radius: 15px;
+  background-color: #fff748;
+  color: #3c1a5b;
+  &:hover {
+    cursor: cell;
+    }
+  &:focus {
+      outline:0;
+  }
+`
+const ScoreShower = styled.div`
+  margin: 40px;
 `
 export default App;
