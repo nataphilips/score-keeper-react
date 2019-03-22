@@ -24,23 +24,13 @@ const FancyButton = styled.button`
   font-family: "Verdana";
   letter-spacing: 1px;
   font-weight: 500;
+  cursor: pointer;
+  outline: 0;
+
   &:hover {
     background-color: #3c1a5b;
     color: #fff748;
-    font-size: 16px;
-    text-align: center;
-    padding: 24px 78px;
-    border: 4px solid #fff748;
-    border-radius: 15px;
-    margin: 3px;
-    font-family: "Verdana";
-    letter-spacing: 1px;
     font-weight: 400;
-    cursor:pointer;
-}
-  }
-  &:focus {
-    outline:0;
   }
 `
 

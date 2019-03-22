@@ -15,52 +15,32 @@ class App extends Component {
     }
   }
 
-  handleChange(event) {
+  changeWinningScore(event) {
     const manualScore = Number(event.target.value);
-    this.setState({winningScore: manualScore});
+    this.setState({ winningScore: manualScore });
+    this.reset();
   }
 
-  selectPlayer1() {
+  increasePlayerScore(whichPlayer) {
     if (!this.state.gameOver) {
-      const nextScore = this.state.scorePlayer1 + 1;
-      this.setState((state) => {
-        return {scorePlayer1: nextScore}
-      });
+      const player = whichPlayer === 1 ? 'scorePlayer1' : 'scorePlayer2';
+
+      const nextScore = this.state[player] + 1;
+      const newState = {}
+      newState[player] = nextScore
+      this.setState(newState)
+
       if (nextScore === this.state.winningScore) {
-          this.setState((state) => {
-            return {gameOver: true}
-          });
-          this.setState((state) => {
-            return {changeClassOne: "winner"}
-          });
+        this.setState({ gameOver: true })
       }
     }
   }
 
-  selectPlayer2() {
-    if (!this.state.gameOver) {
-      const nextScore = this.state.scorePlayer2 + 1;
-      this.setState((state) => {
-        return {scorePlayer2: nextScore}
-      });
-      if (nextScore === this.state.winningScore) {
-          this.setState((state) => {
-            return {gameOver: true}
-          });
-          this.setState((state) => {
-            return {changeClassTwo: "winner"}
-          });
-      }
-    }
-  }
-
-  clickReset() {
-    this.setState((state) => {
-      return {
-        scorePlayer1: 0,
-        scorePlayer2: 0,
-        gameOver: false,
-      }
+  reset() {
+    this.setState({
+      scorePlayer1: 0,
+      scorePlayer2: 0,
+      gameOver: false,
     });
   }
 
@@ -70,7 +50,7 @@ class App extends Component {
         <AppHeader>
           <Logo src={logo}/>
           <div>
-            <h1>
+            <ScoreContainer>
               <Score displayWinningColor={this.state.scorePlayer1 === this.state.winningScore}>
                 {this.state.scorePlayer1}
               </Score>
@@ -78,27 +58,27 @@ class App extends Component {
               <Score displayWinningColor={this.state.scorePlayer2 === this.state.winningScore}>
                 {this.state.scorePlayer2}
               </Score>
-            </h1>
+            </ScoreContainer>
 
             <ScoreShower>
               Playing to:&nbsp;
               <ScoreInput
                 type="number"
                 value={this.state.winningScore}
-                onChange={(e) => this.handleChange(e)}
+                onChange={(e) => this.changeWinningScore(e)}
               />
             </ScoreShower>
 
 
-            <ScoreButton onClick={() => this.selectPlayer1()}>
+            <ScoreButton onClick={() => this.increasePlayerScore(1)}>
               PLAYER ONE SCORES
             </ScoreButton>
 
-            <ScoreButton onClick={() => this.selectPlayer2()}>
+            <ScoreButton onClick={() => this.increasePlayerScore(2)}>
               PLAYER TWO SCORES
             </ScoreButton>
 
-            <ScoreButton onClick={() => this.clickReset()}>
+            <ScoreButton onClick={() => this.reset()}>
               RESET
             </ScoreButton>
           </div>
@@ -138,14 +118,15 @@ const ScoreInput = styled.input`
   border-radius: 15px;
   background-color: #fff748;
   color: #3c1a5b;
-  &:hover {
-    cursor: cell;
-    }
-  &:focus {
-      outline:0;
-  }
+  outline:0;
 `
 const ScoreShower = styled.div`
   margin: 40px;
 `
+const ScoreContainer = styled.div`
+  font-size: 2em;
+  margin: 0.67em 0;
+  font-weight: bold;
+`
+
 export default App;
