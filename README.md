@@ -10,8 +10,10 @@ No more pen and pencil required to find out who won the game.
 
 ### `code to show`
 
-- Basic React syntax
-- Styled components syntax
-- How to extract a styled component
+* Basic React syntax
+* Styled components syntax
+* How to extract a styled component
+
+![ScoreKeeperScreenshot](https://ibb.co/yWZzcn6)
 
 Click this link to see what it looks like: [Project page](https://score-keeper-react.herokuapp.com).
