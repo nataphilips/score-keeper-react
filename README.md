@@ -14,6 +14,6 @@ No more pen and pencil required to find out who won the game.
 * Styled components syntax
 * How to extract a styled component
 
-![ScoreKeeperScreenshot](https://ibb.co/yWZzcn6)
+![ScoreKeeperScreenshot](https://i.ibb.co/ZWFQp6B/Score-Keeper.png)
 
 Click this link to see what it looks like: [Project page](https://score-keeper-react.herokuapp.com).
