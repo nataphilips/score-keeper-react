@@ -16,4 +16,4 @@ No more pen and pencil required to find out who won the game.
 
 ![ScoreKeeperScreenshot](https://i.ibb.co/ZWFQp6B/Score-Keeper.png)
 
-Click this link to see what it looks like: [Project page](https://score-keeper-react.herokuapp.com).
+Click this link to see it working: [Project page](https://score-keeper-react.herokuapp.com).
